@@ -1,0 +1,35 @@
+head {
+  background-color: var(--light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100%;
+}
+
+head, body {
+  background: linear-gradient(0deg, var(--light) 0%, #4c4c4c 100%);
+  /* background: linear-gradient(0deg, black 0%, #4c4c4c 100%); */
+  min-height: 100%;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+}
+
+.modal-header {
+  padding: .5rem;
+}
+
+.modal-title, .card-header {
+  color: var(--dark);
+  font-size: large;
+  font-weight: 600;
+}
+
+.bg-green {
+  background-color: green!important;
+}
+
+.bg-red {
+  background-color: red;
+}

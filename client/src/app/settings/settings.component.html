@@ -1,0 +1,99 @@
+<app-lower-header></app-lower-header>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12 d-flex flex-column justify-content-center">
+      <div class="row mt-2">
+        <div class="col mx-auto">
+          <div class="card rounded shadow shadow-sm">
+            <div class="card-header">
+              <span class="mb-0">{{ 'PROFILE' | translate }}</span>
+            </div>
+            <div class="card-body">
+              <form #form="ngForm" (submit)="saveProfile()">
+                <div class="form-row">
+                  <div class="form-group col-auto">
+                    <label for="email">{{ 'EMAIL' | translate }}</label>
+                    <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email" [(ngModel)]="profile.email">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="firstName">{{ 'FIRST-NAME' | translate }}</label>
+                    <input type="text" class="form-control form-control-sm" id="firstName" name="firstName" placeholder="First name" [(ngModel)]="profile.firstName">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="lastName">{{ 'LAST-NAME' | translate}}</label>
+                    <input type="text" class="form-control form-control-sm" id="lastName" name="lastName" placeholder="Last name" [(ngModel)]="profile.lastName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="address1">{{ 'STREET-ADDRESS' | translate }}</label>
+                  <input type="text" class="form-control form-control-sm" id="address1" name="street1" placeholder="Address" [(ngModel)]="profile.street1">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                    <label for="city">{{ 'CITY' | translate}}</label>
+                    <input type="text" class="form-control form-control-sm" id="city" name="city" placeholder="City" [(ngModel)]="profile.city">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="state">{{ 'STATE' | translate }}</label>
+                    <input type="text" class="form-control form-control-sm" id="state" name="state" placeholder="State" [(ngModel)]="profile.state">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="zip">{{ 'ZIP' | translate }}</label>
+                    <input type="text" class="form-control form-control-sm" id="zip" name="zip" placeholder="Zip" [(ngModel)]="profile.zip">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="spinnerActiveA">
+                  <span>{{ 'SAVE' | translate }}</span>
+                  <span *ngIf="spinnerActiveA">
+                    <i class="fa fa-sync-alt fa-spin ml-2"></i>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col mx-auto">
+          <div class="card rounded shadow shadow-sm">
+            <div class="card-header">
+              <span class="mb-0">{{ 'SECURITY' | translate }}</span>
+            </div>
+            <div class="card-body">
+              <form #secForm="ngForm" (submit)="updatePassword(secForm)">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="currentPassword">{{ 'CURRENT-PASSWORD' | translate }}</label>
+                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" ngModel>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="newPassword">{{ 'NEW-PASSWORD' | translate }}</label>
+                    <input type="password" class="form-control" id="newPassword" name="newPassword" ngModel>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="retypePassword">{{ 'RETYPE-PASSWORD' | translate }}</label>
+                    <input type="password" class="form-control" id="retypePassword" name="retypePassword" ngModel>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="spinnerActiveS">
+                  <span>{{ 'SAVE' | translate }}</span>
+                  <span *ngIf="spinnerActiveS">
+                    <i class="fa fa-sync-alt fa-spin ml-2"></i>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

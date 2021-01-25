@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-1">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <span class="logo">cl</span>
+      CryptoLog
+    </a>
+    <div class="ml-auto p-2">
+      <div class="btn-group" dropdown>
+        <button id="button-basic" dropdownToggle type="button" class="btn btn-light dropdown-toggle"
+          aria-controls="dropdown-basic">
+          <img class="flag" [src]="'assets/' + currentLanguage.moniker + '.png'">
+          <span class="caret"></span>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li *ngFor="let l of languages">
+            <a class="dropdown-item" (click)="setLanguage(l.moniker)">
+              <img class="flag" [src]="'assets/' + l.moniker + '.png'">{{l.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pl-2">
+      <button class="btn btn-light" (click)="toggleTheme()">
+        <i class="fa fa-sun" style="color: yellow" *ngIf="isDark"></i>
+        <i class="fa fa-moon" style="color: white" *ngIf="!isDark"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="line"></div>
+<router-outlet></router-outlet>

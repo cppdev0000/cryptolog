@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 d-flex flex-column justify-content-center">
+      <div class="row mt-2">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+          <div class="card rounded shadow shadow-sm">
+            <div class="card-header">
+              <span class="mb-0">{{ 'LOGIN' | translate}}</span>
+            </div>
+            <div class="card-body">
+              <form (submit)="login(loginForm)" #loginForm="ngForm">
+                <div class="d-flex flex-column">
+                  <div class="form-group">
+                    <label for="email">{{ 'EMAIL' | translate}}</label>
+                    <input type="email" class="form-control" name="email" id="email" [(ngModel)]="creds.email" autofocus email>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">{{ 'PASSWORD' | translate}}</label>
+                    <input type="password" class="form-control" name="password" id="password" [(ngModel)]="creds.password" required minlength="4">
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || spinnerActive">
+                    <span>{{ 'LOGIN' | translate }}</span>
+                    <span *ngIf="spinnerActive">
+                      <i class="fa fa-sync-alt fa-spin ml-2"></i>
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer text-center">
+              <a class="btn btn-light" (click)="register()">{{ 'NOT-REGISTERED' | translate}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #errorTemplate>
+  <div class="modal-header" style="background-color: red;">
+    <h4 class="modal-title pull-left text-white">Error</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ errorMessage | translate }}
+  </div>
+</ng-template>

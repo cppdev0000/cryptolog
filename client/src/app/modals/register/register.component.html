@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <span class="modal-title pull-left text-dark">{{ 'REGISTER' | translate }}</span>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (submit)="register(regForm)" #regForm="ngForm">
+    <div class="d-flex flex-column">
+      <div class="form-group">
+        <label for="email">{{ 'EMAIL' | translate}}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="email" id="email" [(ngModel)]="regInfo.email" #emailModel="ngModel" required email>
+          <div class="input-group-append">
+            <div class="input-group-text bg-red text-light px-1" [class.bg-green]="emailModel.valid"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">{{ 'PASSWORD' | translate}}</label>
+        <div class="input-group">
+          <input [type]="viewPassword1 ? 'text' : 'password'" class="form-control border-right-0" name="password" id="password" [(ngModel)]="regInfo.password" #passwordModel="ngModel" required>
+          <div class="input-group-append">
+            <div class="input-group-text text-dark bg-white px-1"><a (click)="viewPassword1=!viewPassword1"><i class="fa fa-eye" [class.fa-eye-slash]="viewPassword1"></i></a></div>
+          </div>
+          <div class="input-group-append">
+            <div class="input-group-text bg-red text-light px-1" [class.bg-green]="passwordModel.valid"></div>
+          </div>
+        </div>
+        <app-password-strength-meter [passwordToCheck]="regInfo.password" [barLabel]="'PASSWORD-STRENGTH' | translate"></app-password-strength-meter>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">{{ 'RETYPE-PASSWORD' | translate}}</label>
+        <div class="input-group">
+          <input [type]="viewPassword2 ? 'text' : 'password'" class="form-control border-right-0" name="confirmPassword" id="confirm-password" [(ngModel)]="regInfo.confirmPassword" required>
+          <div class="input-group-append">
+            <div class="input-group-text text-dark bg-white px-1"><a (click)="viewPassword2=!viewPassword2"><i class="fa fa-eye" [class.fa-eye-slash]="viewPassword2"></i></a></div>
+          </div>
+          <div class="input-group-append">
+            <div class="input-group-text bg-red text-light px-1" [class.bg-green]="checkForMatchingPassword()"></div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" [disabled]="regForm.invalid || spinnerActive">
+        <span>{{ 'SUBMIT' | translate }}</span>
+        <span *ngIf="spinnerActive">
+          <i class="fa fa-sync-alt fa-spin ml-2"></i>
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng-template #successTemplate>
+  <div class="modal-header" style="background-color: green;">
+    <h4 class="modal-title pull-left text-white">{{ 'REGISTER-SUCCESS' | translate }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalErrorRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ 'REGISTER-SUCCESS-BODY' | translate }}
+  </div>
+</ng-template>
+
+
+<ng-template #errorTemplate>
+  <div class="modal-header" style="background-color: red;">
+    <h4 class="modal-title pull-left text-white">{{ 'ERROR' | translate }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalErrorRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ errorMessage | translate }}
+  </div>
+</ng-template>

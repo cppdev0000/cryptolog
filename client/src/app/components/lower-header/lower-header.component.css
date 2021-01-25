@@ -1,0 +1,15 @@
+nav {
+  background-color: var(--light);
+}
+
+.fa-envelope {
+  font-size: large;
+  color: #2a9fd6;
+}
+
+.badge-message {
+  background-color: #adafae;
+  color: #000000;
+  font-size: small;
+  font-weight: 800;
+}

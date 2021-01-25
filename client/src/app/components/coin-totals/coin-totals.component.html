@@ -1,0 +1,12 @@
+<div class="bg-light text-dark rounded h-100 px-1">
+  <table class="table table-sm">
+    <tr>
+      <th>Asset</th>
+      <th>Value</th>
+    </tr>
+    <tr *ngFor="let c of coinList | keyvalue">
+      <td><img class="mr-2" [src]="'/assets/logos/' + c.key.toUpperCase() + '.svg'" style="width: 20px" onerror="this.onerror=null;this.src='';">{{c.key}}</td>
+      <td>{{c.value | currency}}</td>
+    </tr>
+  </table>
+</div>

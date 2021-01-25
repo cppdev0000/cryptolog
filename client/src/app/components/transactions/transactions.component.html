@@ -1,0 +1,55 @@
+<div class="d-flex align-items-center p-2 bg-light rounded-top">
+  <div class="col-auto px-0">
+    <select class="custom-select custom-select-sm bg-dark text-light" (change)="monthChange($event.target.value)">
+      <option *ngFor="let m of months" [value]="m.value">{{m.display}}</option>
+    </select>
+  </div>
+  <div class="ml-auto">
+    <a class="btn btn-sm btn-outline-info" (click)="addTransaction()"><i class="fa fa-plus"></i></a>
+  </div>
+</div>
+
+<div class="d-none d-md-block">
+  <table class="table table-sm text-dark bg-light">
+    <tr>
+      <th>{{ 'DATE' | translate }}</th>
+      <th>{{ 'ACTION' | translate }}</th>
+      <th>{{ 'ASSET' | translate }}</th>
+      <th>{{ 'COUNT' | translate }}</th>
+      <th>{{ 'PRICE' | translate }}</th>
+      <th>{{ 'TOTAL' | translate }}</th>
+      <th>{{ 'FEE' | translate }}</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let t of transactionsService.transactions | async">
+      <td>{{makeDate(t.date)}}</td>
+      <td>{{t.action}}</td>
+      <td><img [src]="'/assets/logos/' + t.asset.toUpperCase() + '.svg'" style="width: 20px"> {{t.asset}}</td>
+      <td>{{t.count}}</td>
+      <td>{{t.price | currency}}</td>
+      <td>{{t.price * t.count | currency}}</td>
+      <td>{{t.fee | currency}}</td>
+      <td>
+        <a class="btn btn-sm btn-outline-primary" href="#"><i class="fa fa-pencil-alt"></i></a>
+        <a class="btn btn-sm btn-outline-danger ml-1" href="#"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="d-block d-md-none">
+  <ul class="list-group">
+    <li class="list-group-item d-flex align-items-center justify-content-between" *ngFor="let t of transactionsService.transactions | async">
+      <img [src]="'/assets/logos/' + t.asset.toUpperCase() + '.svg'" style="width: 20px;" class="">
+      <div class="ml-2">
+        {{makeDate(t.date)}} - {{t.action}} {{t.asset}}<br>
+        {{t.count}} @ {{t.price | currency}} = {{t.price * t.count | currency}}<br>
+        Fee {{t.fee | currency}}
+      </div>
+      <div class="ml-auto">
+        <a class="btn btn-sm btn-outline-primary" (click)="editTransaction(t.id)"><i class="fa fa-pencil-alt"></i></a>
+        <a class="btn btn-sm btn-outline-danger ml-1" (click)="deleteTransaction(t.id)"><i class="fa fa-trash"></i></a>
+      </div>
+    </li>
+  </ul>
+</div>

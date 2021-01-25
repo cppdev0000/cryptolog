@@ -1,0 +1,22 @@
+.logo {
+  background-color: green;
+  border: 1px solid white;
+  border-radius: 25%;
+  font-weight: 700;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  padding: .25rem;
+}
+
+.line {
+  border-top: 1px solid rgb(78, 81, 90);
+  height: 1px;
+  width: 100%;
+}
+
+.flag {
+  border-radius: 4px;
+  margin-right: .25rem;
+  height: 15px;
+  width: 20px;
+}

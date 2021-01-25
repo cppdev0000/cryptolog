@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <span class="modal-title pull-left text-dark">{{ 'TITLE' | translate }}</span>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (submit)="commit(transForm)" #transForm="ngForm">
+    <div class="d-flex flex-column">
+      <div class="form-group">
+        <label for="date">{{ 'DATE' | translate}}</label>
+        <input type="date" class="form-control" name="date" id="date" [(ngModel)]="transaction.date" required>
+      </div>
+      <div class="form-group">
+        <label for="action">{{ 'ACTION' | translate}}</label>
+        <input type="text" class="form-control" name="action" id="action" [(ngModel)]="transaction.action" required>
+      </div>
+      <div class="form-group">
+        <label for="asset">{{ 'ASSET' | translate}}</label>
+        <input type="text" class="form-control" name="asset" id="asset" [(ngModel)]="transaction.asset" required>
+      </div>
+      <div class="form-group">
+        <label for="count">{{ 'COUNT' | translate}}</label>
+        <input type="text" class="form-control" name="count" id="count" [(ngModel)]="transaction.count" required>
+      </div>
+      <div class="form-group">
+        <label for="price">{{ 'PRICE' | translate}}</label>
+        <input type="text" class="form-control" name="price" id="price" [(ngModel)]="transaction.price" required>
+      </div>
+      <div class="form-group">
+        <label for="fee">{{ 'FEE' | translate}}</label>
+        <input type="text" class="form-control" name="fee" id="fee" [(ngModel)]="transaction.fee" required>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" [disabled]="transForm.invalid || spinnerActive">
+        <span>{{ 'SUBMIT' | translate }}</span>
+        <span *ngIf="spinnerActive">
+          <i class="fa fa-sync-alt fa-spin ml-2"></i>
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
