@@ -1,7 +1,7 @@
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { IProfile } from '../interfaces/profile.interface';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ILoginResult } from '../interfaces/login-response.interface';
 import { environment } from 'src/environments/environment';
 import { delay } from 'rxjs/operators';
@@ -31,20 +31,7 @@ export class AccountService {
 
   //**************************************************************************
   login(email: string, password: string): Observable<ILoginResult> {
-    /*if (email != 'demo@demo.com' || password != 'demo') {
-      return throwError(new HttpErrorResponse({
-        status: 400
-      }));
-    }
-
-    if (email == 'demo@demo.com' && password == 'demo') {
-      return of<ILoginResult>({
-        token: 'token',
-        locked: false
-      }).pipe(delay(1000));
-    }*/
-
-    return this.http.post<ILoginResult>(`${environment.BaseURL}/api/users/login`, {
+    return this.http.post<ILoginResult>(`${environment.ACCOUNT_URL}/api/account/login`, {
       email,
       password
     });
@@ -52,17 +39,7 @@ export class AccountService {
 
   //**************************************************************************
   register(regData: any): Observable<any> {
-    if (regData.email == 'demo@demo.com') {
-      return throwError(new HttpErrorResponse({
-        status: 400
-      }));
-    }
-
-    if (regData.email == 'new@demo.com') {
-      return of({}).pipe(delay(1000));
-    }
-
-    return this.http.post(`${environment.BaseURL}/api/account/register`, regData);
+    return this.http.post(`${environment.ACCOUNT_URL}/api/account/register`, regData);
   }
 
   //**************************************************************************

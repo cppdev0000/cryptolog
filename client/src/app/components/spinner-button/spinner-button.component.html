@@ -1,0 +1,6 @@
+<button [type]="type" class="btn btn-light" [disabled]="spinning || disabled">
+  <span>{{ text }}</span>
+  <span *ngIf="spinning">
+    <i class="fa fa-sync-alt fa-spin ml-2"></i>
+  </span>
+</button>

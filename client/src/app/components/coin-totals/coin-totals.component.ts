@@ -14,9 +14,9 @@ export class CoinTotalsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.transactionsService.accountStats.subscribe(data => {
+    this.transactionsService.coinSummary.subscribe(data => {
       if (data) {
-        this.coinList = data.coinList;
+        this.coinList = data;
       };
     });
   }

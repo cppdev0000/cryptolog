@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  BaseURL: 'http://localhost:3000'
+  ACCOUNT_URL: 'http://localhost:5000',
+  TRANS_URL: 'http://localhost:5001'
 };
 
 /*

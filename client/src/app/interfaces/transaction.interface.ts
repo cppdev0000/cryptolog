@@ -1,9 +1,8 @@
 export interface ITransaction {
   id: number;
   date: Date;
-  action: string;
-  asset: string;
+  coinName: string;
   count: number;
-  price: number;
+  value: number;
   fee: number;
 }

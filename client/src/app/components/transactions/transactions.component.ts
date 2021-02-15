@@ -1,6 +1,4 @@
-import { ITransaction } from './../../interfaces/transaction.interface';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { IAccountStats } from '../../interfaces/account-stats.interface';
 import { AccountService } from './../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { TransactionsService } from 'src/app/services/transactions.service';
@@ -11,7 +9,6 @@ import { TransactionsService } from 'src/app/services/transactions.service';
   styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent implements OnInit {
-   info: IAccountStats;
    months: any[] = [];
    currentMonth: string;
 
@@ -21,21 +18,16 @@ export class TransactionsComponent implements OnInit {
     public transactionsService: TransactionsService,
     private translate: TranslateService) {
       let currentDate = new Date();
-      this.currentMonth = `${currentDate.getFullYear()}${("00" + currentDate.getMonth()).slice(-2)}`;
-  }
+      this.currentMonth = `${currentDate.getFullYear()}${("00" + (currentDate.getMonth() + 1)).slice(-2)}`;
+    }
 
-  //**************************************************************************
-  ngOnInit(): void {
-    this.transactionsService.accountStats.subscribe(data => {
-      if (data) {
-        this.info = data;
-        this.getTransactionMonths();
-      }
-    })
+    //**************************************************************************
+    ngOnInit(): void {
+    this.createDropdownMonths();
 
     // Register a language change event to update month names in dropdown
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      // this.getTransactionMonths();
+      this.createDropdownMonths();
     });
   }
 
@@ -45,12 +37,15 @@ export class TransactionsComponent implements OnInit {
   }
 
   //**************************************************************************
-  getTransactionMonths() : void {
-    const openDate =  new Date(this.info?.firstTransactionDate);
-    const targetValue = `${openDate.getFullYear()}${("00" + openDate.getMonth()).slice(-2)}`;
+  normalizeCount(count: number): number {
+    return Math.abs(count);
+  }
 
+  //**************************************************************************
+  createDropdownMonths() : void {
     let currentDate = new Date();
-    let currentMonth = currentDate.getMonth();
+    let currentMonth = currentDate.getMonth() + 1;
+    const startMonth = currentMonth;
     let currentYear = currentDate.getFullYear();
     let currentValue: string;
 
@@ -59,22 +54,25 @@ export class TransactionsComponent implements OnInit {
     do {
       currentValue = `${currentYear}${("00" + currentMonth).slice(-2)}`;
       this.months.push({
-        display: `${monthNames[currentMonth]} ${currentYear}`,
+        display: `${monthNames[currentMonth - 1]} ${currentYear}`,
         value: currentValue
       });
 
       currentMonth--;
-      if (currentMonth < 0) {
+      if (currentMonth == startMonth) break;
+
+      if (currentMonth == 0) {
         currentMonth += 12;
         currentYear--;
       }
-    } while (currentValue != targetValue);
+    } while (true);
   }
 
   //**************************************************************************
   monthChange(newMonth: string) {
-    //console.log(`Event - ${event}`);
+    console.log(`Event - ${newMonth}`);
     this.currentMonth = newMonth;
+    this.transactionsService.refresh(newMonth);
   }
 
   //**************************************************************************

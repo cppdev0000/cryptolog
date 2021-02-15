@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  constructor(
-    transactionService: TransactionsService
-  ) {
+  constructor(transactionService: TransactionsService) {
     transactionService.refresh();
-   }
+    transactionService.requestSummary();
+    transactionService.requestCoinSummary();
+  }
 }

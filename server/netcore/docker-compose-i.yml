@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysqli
+    ports:
+      - "33060:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmqi
+    ports:
+      - "15672:15672"
+      - "15692:15692"
+      - "5672:5672"
+  redis:
+    image: redis
+    container_name: redisi
+    ports: 
+      - 6379:6379

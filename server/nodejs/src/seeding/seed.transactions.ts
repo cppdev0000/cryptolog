@@ -1,0 +1,85 @@
+export const TransactionSeeds: any[] = [{
+  date: '2020-12-29',
+  asset: 'LTC',
+  count: 10,
+  price: 125.58,
+  fee: 18.71,
+  userId: 1
+}, {
+  date: '2020-12-29',
+  asset: 'BTC',
+  count: 0.25,
+  price: 27040.12,
+  fee: 100.72,
+  userId: 1
+}, {
+  date: '2021-01-02',
+  asset: 'ETH',
+  count: 4,
+  price: 786.98,
+  fee: 46.90,
+  userId: 1
+}, {
+  date: '2021-01-03',
+  asset: 'ETH',
+  count: 4,
+  price: 941.03,
+  fee: 56.09,
+  userId: 1
+}, {
+  date: '2021-01-04',
+  asset: 'XRP',
+  count: 400,
+  price: 0.23,
+  fee: 2.99,
+  userId: 1
+}, {
+  date: '2021-01-04',
+  asset: 'ALGO',
+  count: 218,
+  price: 0.44,
+  fee: 2.99,
+  userId: 1
+}, {
+  date: '2021-01-14',
+  asset: 'ETH',
+  count: 0.5,
+  price: 1238.94,
+  fee: 9.23,
+  userId: 1
+}, {
+  date: '2021-01-15',
+  asset: 'ETH',
+  count: 1.5,
+  price: 1146.57,
+  fee: 25.63,
+  userId: 1
+}, {
+  date: '2021-01-18',
+  asset: 'LTC',
+  count: -10,
+  price: 148.30,
+  fee: 0,
+  userId: 1
+}, {
+  date: '2021-01-18',
+  asset: 'LINK',
+  count: 67,
+  price: 22.10,
+  fee: 0,
+  userId: 1
+}, {
+  date: '2021-01-19',
+  asset: 'ADA',
+  count: 1315,
+  price: 0.38,
+  fee: 0,
+  userId: 1
+}, {
+  date: '2021-01-22',
+  asset: 'ADA',
+  count: 1434,
+  price: 0.35,
+  fee: 0,
+  userId: 1
+}]

@@ -15,8 +15,8 @@ export class LoginComponent {
   errorMessage: string;
   spinnerActive = false;
   creds = {
-    email: 'demo@demo.com',
-    password: 'password'
+    email: 'user@example.com',
+    password: 'String-1'
   }
   bsModalRef: BsModalRef;
 
