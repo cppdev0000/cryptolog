@@ -4,7 +4,7 @@ A functional web application to keep track of your crypto currency transactions.
 
 ## Architecture
 
-![arch](doc/arch.png)
+![arch](doc/Arch.png)
 
 The architecture diagram above consists of:
 
