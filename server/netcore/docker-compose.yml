@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  gateway:
+    image: apigateway:dev
+    container_name: apigateway
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:5000
+  accounts:
+    image: accounts:dev
+    container_name: accounts
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:5001
+      - ConnectionStrings__MyDB=Server=mysqli;Port=3306;Database=transactions;User=root;Password=my-secret-pw
+      - ConnectionStrings__EventBus=rabbitmqi
+  transactions:
+    image: transactions:dev
+    container_name: transactions
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:5002
+      - ConnectionStrings__Redis=redisi:6379
+      - ConnectionStrings__MyDB=Server=mysqli;Port=3306;Database=transactions;User=root;Password=my-secret-pw
+      - ConnectionStrings__EventBus=rabbitmqi
+
+networks:
+  default:
+    external:
+      name: crypto

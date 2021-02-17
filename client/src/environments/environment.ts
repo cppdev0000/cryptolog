@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   ACCOUNT_URL: 'http://localhost:5000',
-  TRANS_URL: 'http://localhost:5001'
+  TRANS_URL: 'http://localhost:5000'
 };
 
 /*

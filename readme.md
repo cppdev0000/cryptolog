@@ -10,13 +10,14 @@ The architecture diagram above consists of:
 
 - Account service (account management and login capability)
 - Transactions service (managing crypto transactions)
-- API gateway (WIP)
+- API gateway (Based on Ocelot)
 - RabbitMQ (event bus to communicate between the account and transaction services)
 - MySQL (DB for each service)
 - Redis (for caching latest prices to avoid multiple round trips to external provider)
 - Angular client. See bottom for screenshots
 
-The components with dashed borders are infrastructure components that can be stood up with the docker compose file docker-compose-i.yml.
+There are two docker compose files included. The first, "docker-compose-i.yml", brings up an instance of MySQL, RabbitMQ, and Redis. The second, "docker-compose.yml" brings up the API Gateway, Account service, and Transactions services.
+
 
 ## Nuget packages
 - Pomelo MySQL
@@ -26,8 +27,9 @@ The components with dashed borders are infrastructure components that can be sto
 - EasyNetQ
 
 #### Todo
-- Add API gateway
+- Add oauth login
 - Incorporate external API service to obtain current cryptocurrency prices
+- Integrate with Kubernetes
 
 
 #### Angular client screenshots

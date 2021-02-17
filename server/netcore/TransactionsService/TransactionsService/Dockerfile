@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["TransactionsService/TransactionsService.csproj", "TransactionsService/"]
-RUN dotnet restore "TransactionsService/TransactionsService.csproj"
+COPY ["TransactionsService.csproj", ""]
+RUN dotnet restore "./TransactionsService.csproj"
 COPY . .
-WORKDIR "/src/TransactionsService"
+WORKDIR "/src/."
 RUN dotnet build "TransactionsService.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -56,7 +56,6 @@ namespace TransactionsService
 
       // Services
       services.AddAutoMapper();
-      services.AddScoped<IUnitOfWork, UnitOfWork>();
       services.AddScoped<ITransactionsRepository, TransactionsRepository>();
       services.AddHostedService<Worker>();
 

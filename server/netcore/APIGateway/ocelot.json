@@ -1,0 +1,40 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/account/{all}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "accounts",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/account/{all}",
+      "UpstreamHttpMethod": [
+        "POST",
+        "DELETE"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/transactions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "transactions",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/transactions",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PATCH",
+        "PUT",
+        "DELETE"
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}

@@ -92,6 +92,12 @@ namespace AccountService
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Account Service API - v1");
       });
+
+      // Auto migrate DB
+      using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+      {
+        scope.ServiceProvider.GetService<DataContext>().MigrateDB();
+      }
     }
   }
 }
